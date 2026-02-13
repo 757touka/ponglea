@@ -97,7 +97,7 @@ function draw () {
   text (p1Score,400,20);
   text(p2Score,500,20)
   
-  if(ballx <=20){
+  if(ballx <=10){
     //player 2 scores
     console.log("inf")
     p2Score = p2Score +1;
@@ -106,7 +106,7 @@ function draw () {
     bally = height/2;
   }
 
-if(ballx >= width){
+if(ballx >= width-10){
     //player 1 scores
     p1Score = p1Score +1;
     //reset ball
@@ -114,16 +114,7 @@ if(ballx >= width){
     bally = height/2;
 }
   
-  //colide with paddleds
-  if (ballx >=p1x-10 && ballx <=p1x+10 && bally >= p1y <+50){
-    //hit player
-    ballDirectionx = ballDirectionx*-1
-  }
-  
-  if (ballx >=p2x-10 && ballx <=p2x+10 && bally >= p2y <+50){
-    //hit player
-    ballDirectionx = ballDirectionx*-1
-  }
+
   
   
 }//close draw
