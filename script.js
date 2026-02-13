@@ -82,17 +82,15 @@ function draw () {
     ballDirectiony = ballDirectiony*-1
   }
   
-  //colide with paddleds
-  if (ballx >=p1x-10 && ballx <=p1x+10 && bally >= p1y <+50){
-    //hit player
-    ballDirectionx = ballDirectionx*-1
+//colision avec les joueurs
+
+  if (ballx - ballWidh/2 <= p1x + playerWidth/2 && bally >= p1y - playerHeight/2 && bally <= p1y + playerHeight/2){
+    ballDirectionx = 1;
   }
   
-  if (ballx >=p2x-10 && ballx <=p2x+10 && bally >= p2y <+50){
-    //hit player
-    ballDirectionx = ballDirectionx*-1
+  if (ballx + ballWidh/2 >= p2x - playerWidth/2 && bally >= p2y - playerHeight/2 && bally <= p2y + playerHeight/2){
+    ballDirectionx = -1;
   }
-  
   
   //scorebord
   textSize(15);
