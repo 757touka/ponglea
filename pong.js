@@ -5,21 +5,21 @@ var bally;
 var ballWidh = 15;
 var ballHeight = 15;
 var ballSpeed = 3;
-var ballDirectionx = 1;
+var ballDirectionx = -1;
 var ballDirectiony = -1;
 
 
 // player 1
-var p1x = 10;
+var p1x = 30;
 var p1y = 250;
 
 //player 2
 
-var p2x = 890;
+var p2x = 870;
 var p2y = 250;
 
 //playersize
-var playerWidth = 20;
+var playerWidth =20;
 var playerHeight = 100;
 var pSpeed = 5;
 
@@ -35,7 +35,7 @@ function setup () {
     ballx = width/2;
     bally = height/2;
     
-  textAlign(CENTER);
+    textAlign(CENTER);
 }   // close setup
 
 
@@ -43,9 +43,9 @@ function setup () {
 
 function draw () {
   // call functions
-  keyTyped();//loop keyTuped function
-  keyPressed();
-  
+    keyTyped();//loop keyTuped function
+    keyPressed();
+
   
   // aparence
     background (0);//black
@@ -58,21 +58,21 @@ function draw () {
     fill(255);//white
     noStroke();//no border
 
-    //drax ball
+    //draw ball
     rect(ballx,bally,ballWidh,ballHeight);
 
 
     // draw players
 
-    rect(p1x,p1y,playerWidth,playerHeight);
-    rect(p2x,p2y,playerWidth,playerHeight);
+    rect(p1x,p1y,playerWidth,playerHeight,20);
+    rect(p2x,p2y,playerWidth,playerHeight,20);
   
-  // physics
+    // physics
+
+    ballx = ballx + (ballDirectionx*ballSpeed); //move honrizontally
+    bally = bally + (ballDirectiony*ballSpeed);
   
-  ballx = ballx + (ballDirectionx*ballSpeed); //move honrizontally
-  bally = bally + (ballDirectiony*ballSpeed);
-  
-  // colision
+// colision
   
   if (bally >= height){
     //hit bottom wall
@@ -82,30 +82,29 @@ function draw () {
     ballDirectiony = ballDirectiony*-1
   }
   
-  //colide with paddleds
-  if (ballx >=p1x-10 && ballx <=p1x+10 && bally >= p1y <+50){
-    //hit player
-    ballDirectionx = ballDirectionx*-1
+//colision avec les joueurs
+
+  if (ballx - ballWidh/2 <= p1x + playerWidth/2 && bally >= p1y - playerHeight/2 && bally <= p1y + playerHeight/2){
+    ballDirectionx = 1;
   }
   
-  if (ballx >=p2x-10 && ballx <=p2x+10 && bally >= p2y <+50){
-    //hit player
-    ballDirectionx = ballDirectionx*-1
+  if (ballx + ballWidh/2 >= p2x - playerWidth/2 && bally >= p2y - playerHeight/2 && bally <= p2y + playerHeight/2){
+    ballDirectionx = -1;
   }
-  
   
   //scorebord
   textSize(15);
   text (p1Score,400,20);
   text(p2Score,500,20)
   
-  if(ballx <=0){
+  if(ballx <=20){
     //player 2 scores
+    console.log("inf")
     p2Score = p2Score +1;
     //reset ball
     ballx = width/2;
     bally = height/2;
-}
+  }
 
 if(ballx >= width){
     //player 1 scores
@@ -115,6 +114,7 @@ if(ballx >= width){
     bally = height/2;
 }
   
+
   
   
 }//close draw
